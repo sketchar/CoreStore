@@ -594,3 +594,5 @@ public final class DataStack: Equatable {
         self.unsafeRemoveAllPersistentStores()
     }
 }
+// MARK: - Sendable conformance (DataStack is thread-safe by design)
+extension DataStack: @unchecked Sendable {}
