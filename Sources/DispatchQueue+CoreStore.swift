@@ -82,13 +82,14 @@ extension DispatchQueue {
         return self.sync { autoreleasepool(invoking: closure) }
     }
 
-    @nonobjc @inline(__always)
-    internal func cs_sync<T>(
-        _ closure: () throws(any Swift.Error) -> T
-    ) throws(any Swift.Error) -> T {
-
-        return try self.sync { try autoreleasepool(invoking: closure) }
-    }
+    // Removed: the `throws(any Swift.Error) -> T` overload. Under the Xcode
+    // 27 / Swift 6.x compiler shipped with iOS 27 SDK, typed-throws overload
+    // resolution can't disambiguate this from the CoreStoreError-typed
+    // overload below, producing
+    //   `Ambiguous use of 'cs_sync'` at DataStack+Transaction.swift:136.
+    // No call site in CoreStore actually uses the generic-error overload
+    // (only DataStack.perform throws CoreStoreError), so dropping it
+    // resolves the ambiguity without changing any caller.
 
     @nonobjc @inline(__always)
     internal func cs_sync<T>(
