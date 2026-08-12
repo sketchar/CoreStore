@@ -36,6 +36,9 @@ import CoreData
  monitor.addObserver(self)
  ```
  */
+/// Object observers are registered and notified on the main thread (asserted in
+/// `addObserver`); `@MainActor` states that contract in the type system.
+@MainActor
 public protocol ObjectObserver: AnyObject {
     
     /**

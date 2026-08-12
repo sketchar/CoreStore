@@ -39,6 +39,10 @@ import CoreData
  monitor.addObserver(self)
  ```
  */
+/// List observers are registered and notified on the main thread (asserted in
+/// `addObserver`); `@MainActor` states that contract in the type system so Swift 6
+/// conformers need no `@preconcurrency`.
+@MainActor
 public protocol ListObserver: AnyObject {
     
     /**
