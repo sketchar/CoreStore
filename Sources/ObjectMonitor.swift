@@ -78,28 +78,40 @@ public final class ObjectMonitor<O: DynamicObject>: Hashable, ObjectRepresentati
             observer,
             willChangeObject: { (observer, monitor, object) in
                 
-                observer.objectMonitor(
-                    monitor,
-                    willUpdateObject: object,
-                    sourceIdentifier: monitor.context.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.objectMonitor(
+                        monitor,
+                        willUpdateObject: object,
+                        sourceIdentifier: monitor.context.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didDeleteObject: { (observer, monitor, object) in
                 
-                observer.objectMonitor(
-                    monitor,
-                    didDeleteObject: object,
-                    sourceIdentifier: monitor.context.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.objectMonitor(
+                        monitor,
+                        didDeleteObject: object,
+                        sourceIdentifier: monitor.context.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didUpdateObject: { (observer, monitor, object, changedPersistentKeys) in
                 
-                observer.objectMonitor(
-                    monitor,
-                    didUpdateObject: object,
-                    changedPersistentKeys: changedPersistentKeys,
-                    sourceIdentifier: monitor.context.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.objectMonitor(
+                        monitor,
+                        didUpdateObject: object,
+                        changedPersistentKeys: changedPersistentKeys,
+                        sourceIdentifier: monitor.context.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
     }

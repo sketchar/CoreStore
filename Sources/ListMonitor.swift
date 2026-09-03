@@ -393,31 +393,47 @@ public final class ListMonitor<O: DynamicObject>: Hashable {
             observer,
             willChange: { (observer, monitor) in
                 
-                observer.listMonitorWillChange(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorWillChange(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didChange: { (observer, monitor) in
                 
-                observer.listMonitorDidChange(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorDidChange(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             willRefetch: { (observer, monitor) in
                 
-                observer.listMonitorWillRefetch(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorWillRefetch(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didRefetch: { (observer, monitor) in
                 
-                observer.listMonitorDidRefetch(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorDidRefetch(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
     }
@@ -440,71 +456,103 @@ public final class ListMonitor<O: DynamicObject>: Hashable {
             observer,
             willChange: { (observer, monitor) in
                 
-                observer.listMonitorWillChange(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorWillChange(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didChange: { (observer, monitor) in
                 
-                observer.listMonitorDidChange(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorDidChange(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             willRefetch: { (observer, monitor) in
                 
-                observer.listMonitorWillRefetch(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorWillRefetch(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didRefetch: { (observer, monitor) in
                 
-                observer.listMonitorDidRefetch(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorDidRefetch(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
         self.registerObserver(
             observer,
             didInsertObject: { (observer, monitor, object, toIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didInsertObject: object,
-                    toIndexPath: toIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didInsertObject: object,
+                        toIndexPath: toIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didDeleteObject: { (observer, monitor, object, fromIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didDeleteObject: object,
-                    fromIndexPath: fromIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didDeleteObject: object,
+                        fromIndexPath: fromIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didUpdateObject: { (observer, monitor, object, atIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didUpdateObject: object,
-                    atIndexPath: atIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didUpdateObject: object,
+                        atIndexPath: atIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didMoveObject: { (observer, monitor, object, fromIndexPath, toIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didMoveObject: object,
-                    fromIndexPath: fromIndexPath,
-                    toIndexPath: toIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didMoveObject: object,
+                        fromIndexPath: fromIndexPath,
+                        toIndexPath: toIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
     }
@@ -527,92 +575,132 @@ public final class ListMonitor<O: DynamicObject>: Hashable {
             observer,
             willChange: { (observer, monitor) in
                 
-                observer.listMonitorWillChange(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorWillChange(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didChange: { (observer, monitor) in
                 
-                observer.listMonitorDidChange(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorDidChange(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             willRefetch: { (observer, monitor) in
                 
-                observer.listMonitorWillRefetch(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorWillRefetch(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didRefetch: { (observer, monitor) in
                 
-                observer.listMonitorDidRefetch(
-                    monitor,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitorDidRefetch(
+                        monitor,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
         self.registerObserver(
             observer,
             didInsertObject: { (observer, monitor, object, toIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didInsertObject: object,
-                    toIndexPath: toIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didInsertObject: object,
+                        toIndexPath: toIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didDeleteObject: { (observer, monitor, object, fromIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didDeleteObject: object,
-                    fromIndexPath: fromIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didDeleteObject: object,
+                        fromIndexPath: fromIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didUpdateObject: { (observer, monitor, object, atIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didUpdateObject: object,
-                    atIndexPath: atIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didUpdateObject: object,
+                        atIndexPath: atIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didMoveObject: { (observer, monitor, object, fromIndexPath, toIndexPath) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didMoveObject: object,
-                    fromIndexPath: fromIndexPath,
-                    toIndexPath: toIndexPath,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didMoveObject: object,
+                        fromIndexPath: fromIndexPath,
+                        toIndexPath: toIndexPath,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
         self.registerObserver(
             observer,
             didInsertSection: { (observer, monitor, sectionInfo, toIndex) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didInsertSection: sectionInfo,
-                    toSectionIndex: toIndex,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didInsertSection: sectionInfo,
+                        toSectionIndex: toIndex,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             },
             didDeleteSection: { (observer, monitor, sectionInfo, fromIndex) in
                 
-                observer.listMonitor(
-                    monitor,
-                    didDeleteSection: sectionInfo,
-                    fromSectionIndex: fromIndex,
-                    sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
-                )
+                // Observers are registered and notified on the main thread (asserted in
+                // addObserver / the monitor's change handlers); state the contract here.
+                MainActor.assumeIsolated {
+                    observer.listMonitor(
+                        monitor,
+                        didDeleteSection: sectionInfo,
+                        fromSectionIndex: fromIndex,
+                        sourceIdentifier: monitor.fetchedResultsController.managedObjectContext.saveMetadata?.sourceIdentifier
+                    )
+                }
             }
         )
     }
